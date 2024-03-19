@@ -1,0 +1,132 @@
+body {
+    font-family:  sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+
+nav {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center; /* Center the items horizontally */
+    align-items: center;
+}
+
+nav a {
+    color: whitesmoke;
+    text-decoration: none;
+    margin: 0 10px;
+    transition: all 0.2s ease-in-out;
+}
+
+nav a:hover {
+    color: burlywood;
+}
+
+nav .userID {
+    margin-top: 25px;
+}
+
+nav ul.left {
+    margin-right: auto; /* Push the left-aligned items to the left */
+}
+
+nav ul.right {
+    margin-left: auto; /* Push the right-aligned items to the right */
+}
+
+
+
+footer {
+    background-color: #333;
+    color: whitesmoke;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+
+/* ----------------------------Sign Up ---------------------------------*/
+
+
+
+
+.signup-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 8px;
+}
+
+input {
+    padding: 8px;
+    margin-bottom: 16px;
+}
+
+button {
+    background-color: #28a745;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+
+
+
+.forum .clickable-box {
+  width: 400px;
+  height: 400px;
+  background-color: #3498db;
+  color: #fff;
+  /* text-align: center; */
+  line-height: 500px;
+  cursor: pointer;
+  border-radius: 10px;
+  margin-left: auto;
+  margin-right: 20px;
+}
+
+.matches .clickable-box {
+    width: 400px;
+    height: 400px;
+    background-color: #3498db;
+    color: #fff;
+    /* text-align: center; */
+    line-height: 500px;
+    cursor: pointer;
+    border-radius: 10px;
+    margin-left: 20px;
+    margin-right: auto;
+  }
+  
