@@ -14,11 +14,12 @@ return new class extends Migration
         Schema::create('forum_messages', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->text('content');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedBigInteger('topic_id');
+            $table->foreign('topic_id')->references('id')->on('topics');
+            $table->string('content');
+            $table->timestamp('creationDate')->useCurrent();
             $table->timestamps();
-
-            // Foreign key constraint to link the message to a user
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('forum_messages');
+        Schema::dropIfExists('forum_message');
     }
 };

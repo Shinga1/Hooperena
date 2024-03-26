@@ -11,71 +11,6 @@ window.onscroll = function () {
     }
 };
 
-// Scroller For The Reviews
-const reviews = document.getElementsByClassName("review");
-const container = document.querySelector(".reviews-container");
-
-let currentIndex = 0;
-
-const showReview = (index, direction) => {
-    Array.from(reviews).forEach((review, i) => {
-        if (i === index) {
-            review.style.display = "block";
-        } else {
-            if (direction === "initial" && i !== 0) {
-                review.style.display = "none";
-            } else {
-                review.style.display = "none";
-            }
-        }
-    });
-};
-
-showReview(currentIndex, "initial");
-
-const nextReview = () => {
-    const nextIndex = (currentIndex + 1) % reviews.length;
-    showReview(nextIndex, "next");
-    currentIndex = nextIndex;
-
-    const offscreenLeft =
-        reviews[currentIndex].getBoundingClientRect().left < 0;
-    if (offscreenLeft) {
-        container.appendChild(reviews[currentIndex]);
-
-        for (let i = 0; i < reviews.length; i++) {
-            const rect = reviews[i].getBoundingClientRect();
-            if (rect.left >= 0 && rect.right <= window.innerWidth) {
-                currentIndex = i;
-                break;
-            }
-        }
-    }
-};
-
-setInterval(nextReview, 4000);
-
-// FAQs Animation
-let toggles = document.getElementsByClassName("answers");
-let contentDiv = document.getElementsByClassName("information");
-
-for (let i = 0; i < toggles.length; i++) {
-    toggles[i].addEventListener("click", () => {
-        if (
-            parseInt(contentDiv[i].style.height) != contentDiv[i].scrollHeight
-        ) {
-            contentDiv[i].style.height = contentDiv[i].scrollHeight + "px";
-        } else {
-            contentDiv[i].style.height = "0px";
-        }
-
-        for (let j = 0; j < contentDiv.length; j++) {
-            if (j !== i) {
-                contentDiv[j].style.height = "0px";
-            }
-        }
-    });
-}
 
 // Menu Toggle
 const menuToggle = document.querySelector(".menu-toggle");
@@ -93,3 +28,62 @@ $(document).ready(function () {
         $("nav ul").toggleClass("toggled");
     });
 });
+
+
+// Home page gallery
+document.addEventListener("DOMContentLoaded", function () {
+  const slides = document.querySelectorAll('.slide');
+  const autoBtns = document.querySelectorAll('.auto-btn');
+  const manualBtns = document.querySelectorAll('.manual-btn');
+  let currentIndex = 0;
+
+  function showSlide(index) {
+      slides.forEach((slide, i) => {
+          slide.style.transform = `translateX(-${index * 20}%)`;
+      });
+  }
+
+  function activateBtns(index) {
+      autoBtns.forEach((btn, i) => {
+          btn.classList.remove('active');
+          if (i === index) {
+              btn.classList.add('active');
+          }
+      });
+      manualBtns.forEach((btn, i) => {
+          btn.classList.remove('active');
+          if (i === index) {
+              btn.classList.add('active');
+          }
+      });
+  }
+
+  function autoSlide() {
+      currentIndex++;
+      if (currentIndex === slides.length) {
+          currentIndex = 0;
+      }
+      showSlide(currentIndex);
+      activateBtns(currentIndex);
+  }
+
+  autoBtns.forEach((btn, index) => {
+      btn.addEventListener('click', () => {
+          currentIndex = index;
+          showSlide(currentIndex);
+          activateBtns(currentIndex);
+      });
+  });
+
+  manualBtns.forEach((btn, index) => {
+      btn.addEventListener('click', () => {
+          currentIndex = index;
+          showSlide(currentIndex);
+          activateBtns(currentIndex);
+      });
+  });
+
+  setInterval(autoSlide, 5000); // Change slide every 5 seconds
+});
+
+  

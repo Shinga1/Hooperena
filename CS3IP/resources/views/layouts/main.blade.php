@@ -16,21 +16,12 @@
 
     <!-- CSS Styles -->
     <link href="{{ asset('assets/css/styles.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
+    <!-- <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet"> -->
+
+    <!-- scripts javascript-->
+    <script src="{{ asset('assets/js/script.js') }}"></script>
 
 </head>
-
-@if (session()->has('success'))
-    <div class="alert alert-success">
-        {{ session()->get('success') }}
-    </div>
-@endif
-
-@if (session()->has('subscribed'))
-    <div class="alert alert-danger">
-        {{ session()->get('subscribed') }}
-    </div>
-@endif
 
 <body>
     <div id="app">
@@ -39,19 +30,28 @@
         <main>
             @yield('content')
             <!-- @yield('content1') -->
+                @if (session()->has('success'))
+                    <div class="alert alert-success">
+                        {{ session()->get('success') }}
+                    </div>
+                @endif
+
+                @if (session()->has('subscribed'))
+                    <div class="alert alert-danger">
+                        {{ session()->get('subscribed') }}
+                    </div>
+                @endif
         </main>
     </div>
     @include('layouts.frontend.footer')
 
     <!-- JS File Links -->
 
-    <script src="{{ asset('assets/js/script.js')}}" type="module"></script>
-    <script>
-        window.addEventListener('message', event => {
-            alertify.set('notifier', 'position', 'top-right');
-            alertify.notify(event.detail.text, event.detail.type);
-        });
-    </script>
+    @if(session('alert-success'))
+        <script>
+            alert("{{ session('alert-success') }}");
+        </script>
+    @endif
 
 
 </body>

@@ -25,22 +25,8 @@ class LoginController extends Controller
             return back()->with('errorMessage', 'Incorrect details provided');
         }
 
+        $request->session()->flash('alert-success', 'You have successfully logged in, press OK to continue!');
         return redirect('/');
-
-        // $credentials = $request->validate([
-        //     'email' => ['required', 'email'],
-        //     'password' => ['required'],
-        // ]);
- 
-        // if (auth()->attempt($credentials)) {
-        //     $request->session()->regenerate();
-        //     return redirect()->intended('/');
-        // }
- 
-        // return back()->withErrors([
-        //     'username' => 'Incorrect Username or Password!',
-        // ])->onlyInput('username');
-
     }
 
 }
