@@ -31,7 +31,7 @@ CREATE TABLE forum_messages (
 );
 
 -- Table: ForumReplies
-CREATE TABLE forum_replies (
+CREATE TABLE replies (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT,
     message_id INT,

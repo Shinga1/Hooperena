@@ -18,7 +18,7 @@ nav {
 }
 
 nav .links {
-    flex: 1; /* Make the left part of the navigation bar flexible */
+    flex: 1; 
     display: flex;
     justify-content: center;
     margin-left: 200px;
@@ -63,98 +63,81 @@ footer {
 
 /*--------------------------Home page------------------------------*/
 
-
-/* .gallery-container {
-    max-width: 800px;
-    margin: 0 auto;
-    border: 2px solid #000;
-  }
-  
-  .gallery {
-    overflow: hidden;
-  }
-  
-  .slides {
-    display: flex;
-  }
-  
-  .slides img {
-    width: 100%;
-    height: auto;
-    display: none;
-  }
-  
-  .slides img:first-child {
-    display: block;
-  }
-
-  @keyframes scrollGallery {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-100%); }
-  } */
-
-  .gallery-slider {
-    width: 800px;
+.image-container {
+    width: 900px;
     height: 500px;
-    border-radius: 10px;
     overflow: hidden;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    margin: 0 auto; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
 }
 
-.slides {
+.image-container img {
+    height: 500px; 
+    display: block;
+    margin: 0 auto; 
+}
+
+
+.center-container {
     display: flex;
-    width: 500%;
+    justify-content: center; 
+    align-items: center; 
 }
 
-.slide {
-    width: 20%;
+.image-container2 {
+    white-space: nowrap; 
 }
 
-.slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.image-container2 img {
+    width: 250px; 
+    height: 250px; 
+    display: inline-block; 
+    max-width: 100%; 
+    height: auto; 
+    vertical-align: top;
+    margin-right: 3px; 
 }
 
-.navigation-auto,
-.navigation-manual {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
+
+.forum-box h2 {
+    font-weight: bold; 
+    cursor: pointer; 
 }
 
-.auto-btn1,
-.auto-btn2,
-.auto-btn3,
-.auto-btn4,
-.auto-btn5,
-.manual-btn {
-    width: 15px;
-    height: 15px;
-    background-color: #fff;
-    border-radius: 50%;
-    margin: 0 5px;
-    cursor: pointer;
+
+.forum-box ul {
+    list-style-type: none; 
+    text-decoration: none;
+    padding: 0; 
+    margin: 0; 
 }
 
-.manual-btn {
-    border: 2px solid #fff;
+
+.forum-box ul li {
+    margin-bottom: 25px; 
+    color: black;
+    border-bottom: 1px solid black; 
+    width: 90%;
 }
 
-.manual-btn:hover,
-.auto-btn1.active,
-.auto-btn2.active,
-.auto-btn3.active,
-.auto-btn4.active,
-.auto-btn5.active {
-    background-color: burlywood;
+
+.forum-box ul li:hover {
+    color: burlywood; 
 }
 
+
+.forum-box a {
+    color: inherit;
+    text-decoration: none;
+    text-align: center;
+
+}
+
+.forum-box a:hover {
+    color: inherit;
+}
 
 
 
@@ -162,23 +145,23 @@ footer {
   .games .clickable-box,
 .matches .clickable-box {
   width: 150px;
-  height: 50px; /* Adjust height for better button appearance */
+  height: 50px; 
   background-color: #636363;
   color: #fff;
   text-align: center;
-  line-height: 50px; /* Center text vertically */
+  line-height: 50px; 
   cursor: pointer;
   border-radius: 10px;
-  margin: 10px auto; /* Center horizontally with some margin */
-  border: none; /* Remove default button border */
-  display: inline-block; /* Ensure buttons appear in-line */
-  text-decoration: none; /* Remove default link underline */
+  margin: 10px auto; 
+  border: none; 
+  display: inline-block;
+  text-decoration: none; 
   margin-left: 50px;
 }
 
 .games .clickable-box:hover,
 .matches .clickable-box:hover {
-  background-color: burlywood; /* Change color on hover */
+  background-color: burlywood; 
   transition: all 0.2s ease-in-out;
 }
 
@@ -209,16 +192,18 @@ input {
 }
 
 button {
-    background-color: #28a745;
+    background-color: #979696;
     color: #fff;
     padding: 10px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    transition: all 0.2s ease-in-out;
+
 }
 
 button:hover {
-    background-color: #218838;
+    background-color: burlywood;
 }
 
 
@@ -243,78 +228,117 @@ h1{
 
 /*------------news--------------------*/
 
-.container {
+
+.news-card {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.news-card:hover {
+    background-color: #e9e9e9;
+}
+
+.news-card .card-body {
+    padding: 20px;
+}
+
+
+
+.news-h2 h2 {
+    font-weight: bold; 
+    font-size: 32px;
+    text-align: center;
+    cursor: pointer; 
+    margin-bottom: 60px;
+}
+
+.container-news {
     max-width: 800px;
     margin: 20px auto;
     padding: 20px;
     background-color: #fff;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);}
+
+.card {
+    border: 1px solid black; 
 }
-.news-box {
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 5px;
-    cursor: pointer;
+
+.card:hover {
+    border-color: burlywood; 
 }
-.news-box:hover {
-    background-color: #e9e9e9;
+
+.card-title {
+    margin-bottom: 10px; 
+    color: black;
 }
-.comment-section {
-    display: none;
-    margin-top: 10px;
+
+.card-title:hover {
+    color: burlywood; 
 }
-.comment-section textarea {
-    width: 100%;
-    height: 80px;
-    margin-bottom: 10px;
+
+.card-link {
+    color: inherit;
+    text-decoration: none;
 }
-.comment-section button {
-    background-color: #4CAF50;
+
+.card-link:hover {
+    color: inherit;
+}
+
+
+/*-------------------game create--------------*/
+.container-game {
+    width: 500px; 
+    margin: 0 auto; 
+    margin-top: 50px; 
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+    padding: 20px; 
+}
+
+
+input[type="submit"] {
+    width: 100px; 
+    background-color: #8b8b8b; 
     color: white;
     padding: 10px 20px;
     border: none;
-    cursor: pointer;
-    border-radius: 5px;
-}
-.comment-section button:hover {
-    background-color: #45a049;
-}
-
-
-/*-----------------------------game page-----------------*/
-
-form {
-    max-width: 400px;
-    margin: 0 auto;
-}
-
-label {
-    display: block;
-    margin-bottom: 5px;
-}
-
-input[type="text"],
-input[type="date"] {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-}
-
-input[type="submit"] {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 15px;
-    border: none;
     border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s ease; 
 }
 
 input[type="submit"]:hover {
-    background-color: #45a049;
+    background-color: burlywood;
+}
+
+/*---------------forum----------------------------------*/
+.forum-box {
+    position: fixed;
+    top: 250px;
+    right: 20px;
+    width: 300px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+}
+
+.forum-box h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.forum-link {
+    display: block;
+    margin-bottom: 10px;
+    text-decoration: none;
+    color: #333;
 }

@@ -1,22 +1,21 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\TopicsController; 
+use App\Http\Controllers\GameMatchController;
+use App\Http\Controllers\ForumMessageController;
+use App\Http\Controllers\ForumReplyController;
 
 
-Route::get('/', function () {
-    return view('home');
-});
 
 Route::get('/about', function () {
     return view('about');
 });
 
 Route::get('/news', function () {
-    // fetch news data from a database
     $news = [
         'title' => 'Breaking News',
         'content' => 'This is an important piece of news!',
@@ -41,45 +40,43 @@ Route::get('/gameResults', function () {
     return view('gameResults'); 
 });
 
+Route::get('/gameMatch', function () {
+    return view('gameMatch'); 
+});
 
+Route::get('/forum', function () {
+    return view('forum'); 
+});
+
+Route::get('/topics', function () {
+    return view('topics'); 
+});
 
 // ---------------------------------Forum -----------------------------
 
+Route::get('/forum/{topic}/messages', [ForumMessageController::class, 'index'])->name('forum.messages.index');
+Route::post('/forum/{topic}/messages', [ForumMessageController::class, 'store'])->name('forum.messages.store');
+Route::get('/forum/messages/{message}/replies', [ForumReplyController::class, 'index'])->name('forum.replies.index');
+Route::post('/forum/messages/{message}/replies', [ForumReplyController::class, 'store'])->name('forum.replies.store');
 
+// -----------------------------Topics------------------------------------
 
-// use App\Http\Controllers\ForumController;
-// use App\Http\Controllers\ForumMessageController;
-// use App\Http\Controllers\ForumReplyController;
-// use App\Http\Controllers\UserMessageLikeController;
+Route::get('/news', [TopicsController::class, 'news']);
+Route::get('/', [TopicsController::class, 'index']);
 
-// /////
+Route::get('/topics', [TopicsController::class, 'show'])->name('topics.show');
+Route::get('/topics/{id}', [TopicsController::class, 'show']) ->name('topics.home');
 
-// Route::resource('forum', ForumController::class);
-
-// //get
-// Route::get('/forum', [ForumController::class, 'index']);
-// Route::get('/forum/{topic}', [ForumController::class, 'show'])->name('forum.show');
-
-// //post
-// Route::post('/forum/{topic}/message', [ForumMessageController::class, 'store'])->name('forum.message');
-// Route::post('/forum/messages/{message}/reply', [ForumReplyController::class, 'store'])->name('forum.reply');
-// Route::post('/forum/messages/{message}/like', [UserMessageLikeController::class, 'store'])->name('forum.like');
-
-
-
-Route::resource('topics', 'TopicController');
-Route::resource('messages', 'ForumMessageController');
-
+Route::get('/topic/{id}', [TopicsController::class, 'show'])->name('topics.news');
 
 //---------------------game handler-----------------------------------
 
+Route::get('/game', [GameMatchController::class, 'show']);
+Route::post('/game', [GameMatchController::class, 'gameDone']);
 
-use App\Http\Controllers\GameController;
-
-Route::middleware(['auth'])->group(function () {
-    Route::post('/submit', [GameController::class, 'store'])->name('game.store');
-});
-
+Route::get('/game_match', [GameMatchController::class, 'show']);
+Route::post('/game_match', [GameMatchController::class, 'gameDone']);
+Route::get('/game_match/{id}', [GameMatchController::class, 'show']);
 
 // --------------register and login&logout--------------------
 

@@ -2,30 +2,30 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Message;
 use Illuminate\Http\Request;
-use App\Models\ForumTopic;
-use App\Models\ForumMessage;
 
 class ForumMessageController extends Controller
 {
-    
-    public function store(Request $request, ForumTopic $topic)
-    {
-        $validator = Validator::make($request->all(), [
-            'content' => 'required',
-        ]);
+    public function index(Topic $topic)
+{
+    $messages = $topic->messages()->with('user')->get();
+    return view('forum.messages.index', compact('messages', 'topic'));
+}
 
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
+public function store(Request $request, Topic $topic)
+{
+    $request->validate([
+        'content' => 'required|string',
+    ]);
 
-        $message = new ForumMessage([
-            'content' => $request->input('content'),
-            'user_id' => auth()->id(),
-        ]);
+    $message = new ForumMessage();
+    $message->content = $request->input('content');
+    $message->user_id = auth()->id();
+    $message->topic_id = $topic->id;
+    $message->save();
 
-        $topic->messages()->save($message);
+    return redirect()->route('forum.messages.index', $topic->id);
+}
 
-        return redirect()->route('forum.show', ['topic' => $topic]);
-    }
 }

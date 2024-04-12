@@ -1,17 +1,24 @@
 @extends('layouts.main')
 
 @section('content')
+<div class="news-h2">
+    <h2 class="mb-4">Discussions</h2>
+</div>
 
-<div class="container">
-    <div class="news-box" onclick="toggleCommentSection(1)">
-        <h2>Game Recap: Lakers vs. Warriors</h2>
-        <p>The Los Angeles Lakers defeated the Golden State Warriors in a thrilling overtime game last night. LeBron James led the Lakers with...</p>
-        <div class="comment-section" id="comment-section-1">
-            <textarea placeholder="Write your comment here"></textarea>
-            <button onclick="postComment(1)">Post Comment</button>
-            <button onclick="cancelComment(1)">Cancel</button> <!-- New Cancel button -->
-            <div class="comments"></div> <!-- Container to display comments -->
-        </div>
+<div class="container-news">
+    <div class="row">
+        @foreach($topics as $topics)
+            <div class="col-md-4 mb-4">
+                <a href="{{ route('topics.news', $topics->id) }}" class="card-link"> 
+                    <div class="card news-card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $topics->title }}</h5>
+                            <p class="card-text">{{ $topics->description }}</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        @endforeach
     </div>
-
+</div>
 @endsection

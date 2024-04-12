@@ -8,23 +8,25 @@ use App\Models\ForumReply;
 
 class ForumReplyController extends Controller
 {
+    public function index(ForumMessage $message)
+    {
+        $replies = $message->replies()->with('user')->get();
+        return view('forum.replies.index', compact('replies', 'message'));
+    }
+    
     public function store(Request $request, ForumMessage $message)
     {
-        $validator = Validator::make($request->all(), [
-            'reply_content' => 'required',
+        $request->validate([
+            'content' => 'required|string',
         ]);
-
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
-
-        $reply = new ForumReply([
-            'content' => $request->input('reply_content'),
-            'user_id' => auth()->id(),
-        ]);
-
-        $message->replies()->save($reply);
-
-        return redirect()->back();
+    
+        $reply = new ForumReply();
+        $reply->content = $request->input('content');
+        $reply->user_id = auth()->id();
+        $reply->message_id = $message->id;
+        $reply->save();
+    
+        return redirect()->route('forum.replies.index', $message->id);
     }
+    
 }
