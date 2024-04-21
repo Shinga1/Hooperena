@@ -63,20 +63,19 @@ Route::post('/forum/messages/{message}/replies', [ForumReplyController::class, '
 
 Route::get('/news', [TopicsController::class, 'news']);
 Route::get('/', [TopicsController::class, 'index']);
-
 Route::get('/topics', [TopicsController::class, 'show'])->name('topics.show');
 Route::get('/topics/{id}', [TopicsController::class, 'show']) ->name('topics.home');
-
 Route::get('/topic/{id}', [TopicsController::class, 'show'])->name('topics.news');
+Route::post('/topics/{id}/add-message', [TopicsController::class, 'addMessage'])->name('topics.addMessage');
+
 
 //---------------------game handler-----------------------------------
 
-Route::get('/game', [GameMatchController::class, 'show']);
-Route::post('/game', [GameMatchController::class, 'gameDone']);
+Route::get('/game', [GameMatchController::class, 'index']); 
+Route::post('/game', [GameMatchController::class, 'store']); 
 
-Route::get('/game_match', [GameMatchController::class, 'show']);
-Route::post('/game_match', [GameMatchController::class, 'gameDone']);
-Route::get('/game_match/{id}', [GameMatchController::class, 'show']);
+Route::get('/game', [GameMatchController::class, 'index']);
+Route::post('/game', [GameMatchController::class, 'gameDone'])->name('game_done');
 
 // --------------register and login&logout--------------------
 
@@ -84,6 +83,9 @@ Route::get('/register', [RegisterController::class, 'register']);
 Route::post('/register', [RegisterController::class, 'registerDone']);
 
 Route::get('/logout', [LogoutController::class, 'logout']);
+Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
 
-Route::get('/login', [LoginController::class, 'login']);
+
+Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/login', [LoginController::class, 'authenticate']);
+

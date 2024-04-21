@@ -19,7 +19,24 @@ class TopicsController extends Controller
 
     public function show($id) {
         $topics = topic::findOrFail($id);
-        return view('topics', ['topic' => $topics]);
+        $messages = $topics->messages()->get();
+        return view('topics', ['topic' => $topics, 'messages' => $messages]);
+    }
+
+    public function addMessage(Request $request, $id) {
+        $request->validate([
+            'content' => 'required|max:255'
+        ]);
+
+        $user = Auth::user();
+        $message = new ForumMessage([
+            'user_id' => $user->id,
+            'topic_id' => $id,
+            'content' => $request->input('content')
+        ]);
+        $message->save();
+
+        return redirect()->route('topics.show', ['id' => $id]);
     }
 
   
