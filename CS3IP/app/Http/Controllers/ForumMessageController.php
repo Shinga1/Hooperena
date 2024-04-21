@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Message;
+use App\Models\ForumMessage;
 use Illuminate\Http\Request;
+
 
 class ForumMessageController extends Controller
 {

@@ -7,19 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class ForumMessage extends Model
 {
-
     use HasFactory;
 
-    public function replies()
-    {
-        return $this->hasMany(ForumReply::class);
-    }
-    
+    protected $fillable = [
+        'user_id',
+        'topic_id',
+        'content',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
     }
-    
+
     public function topic()
     {
         return $this->belongsTo(Topic::class);
